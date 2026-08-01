@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Student List - SidhuEdu ERP</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f8fb;
+}
+
+.container{
+width:90%;
+margin:20px auto;
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px #ccc;
+}
+
+h2{
+text-align:center;
+color:green;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th{
+background:green;
+color:white;
+}
+
+th,td{
+border:1px solid #ccc;
+padding:10px;
+text-align:center;
+}
+
+button{
+background:red;
+color:white;
+border:none;
+padding:8px;
+cursor:pointer;
+}
+
+.back{
+background:green;
+margin-top:20px;
+padding:10px 20px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<h2>📋 Student List</h2>
+
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Admission No</th>
+<th>Name</th>
+<th>Father</th>
+<th>Class</th>
+<th>Mobile</th>
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="studentData">
+
+</tbody>
+
+
+</table>
+
+
+<button class="back" onclick="location.href='dashboard.html'">
+⬅ Back Dashboard
+</button>
+
+
+</div>
+
+
+
+<script src="js/database.js"></script>
+
+
+<script>
+
+
+function loadStudents(){
+
+
+let students = getStudents();
+
+
+let table = document.getElementById("studentData");
+
+
+table.innerHTML="";
+
+
+
+students.forEach(function(s,index){
+
+
+table.innerHTML += `
+
+<tr>
+
+<td>${s.admissionNo}</td>
+
+<td>${s.name}</td>
+
+<td>${s.father}</td>
+
+<td>${s.className}</td>
+
+<td>${s.mobile}</td>
+
+
+<td>
+
+<button onclick="removeStudent(${index})">
+Delete
+</button>
+
+</td>
+
+
+</tr>
+
+`;
+
+
+});
+
+
+}
+
+
+
+function removeStudent(index){
+
+
+if(confirm("Delete Student?")){
+
+
+deleteStudent(index);
+
+loadStudents();
+
+
+}
+
+
+}
+
+
+
+loadStudents();
+
+
+</script>
+
+
+</body>
+
+</html>

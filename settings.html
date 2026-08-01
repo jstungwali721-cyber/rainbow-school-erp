@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Settings - SidhuEdu ERP</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f8fb;
+margin:0;
+}
+
+.header{
+background:green;
+color:white;
+text-align:center;
+padding:15px;
+}
+
+.container{
+width:90%;
+max-width:500px;
+margin:20px auto;
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px #ccc;
+}
+
+label{
+font-weight:bold;
+}
+
+input,select{
+width:100%;
+padding:10px;
+margin:8px 0 15px;
+}
+
+button{
+width:100%;
+padding:12px;
+background:green;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+font-size:16px;
+margin-top:10px;
+}
+
+button:hover{
+background:darkgreen;
+}
+
+.footer{
+text-align:center;
+margin-top:20px;
+color:gray;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+<h2>⚙️ Settings</h2>
+
+<p>Rainbow Play-Way Pre School</p>
+
+</div>
+
+<div class="container">
+
+<label>School Name</label>
+<input type="text" id="schoolName" value="Rainbow Play-Way Pre School">
+
+<label>School Address</label>
+<input type="text" id="schoolAddress" value="Bhucho Mandi">
+
+<label>Academic Session</label>
+<input type="text" id="session" value="2026-2027">
+
+<label>Currency</label>
+<select id="currency">
+<option>INR (₹)</option>
+</select>
+
+<button onclick="saveSettings()">
+💾 Save Settings
+</button>
+
+<button onclick="location.href='dashboard.html'">
+⬅ Back to Dashboard
+</button>
+
+</div>
+
+<div class="footer">
+
+Powered by SidhuEdu ERP
+
+</div>
+
+<script>
+
+function saveSettings(){
+
+localStorage.setItem("schoolName",document.getElementById("schoolName").value);
+
+localStorage.setItem("schoolAddress",document.getElementById("schoolAddress").value);
+
+localStorage.setItem("session",document.getElementById("session").value);
+
+localStorage.setItem("currency",document.getElementById("currency").value);
+
+alert("Settings Saved Successfully!");
+
+}
+
+window.onload=function(){
+
+if(localStorage.getItem("schoolName"))
+document.getElementById("schoolName").value=localStorage.getItem("schoolName");
+
+if(localStorage.getItem("schoolAddress"))
+document.getElementById("schoolAddress").value=localStorage.getItem("schoolAddress");
+
+if(localStorage.getItem("session"))
+document.getElementById("session").value=localStorage.getItem("session");
+
+if(localStorage.getItem("currency"))
+document.getElementById("currency").value=localStorage.getItem("currency");
+
+}
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Student Admission - SidhuEdu ERP</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f8fb;
+}
+
+.container{
+width:400px;
+max-width:90%;
+margin:30px auto;
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px #ccc;
+}
+
+h2{
+text-align:center;
+color:green;
+}
+
+input,select,button{
+
+width:100%;
+padding:12px;
+margin:8px 0;
+
+}
+
+button{
+
+background:green;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<h2>🌈 Rainbow Play-Way Pre School</h2>
+
+<h3>👨‍🎓 Student Admission</h3>
+
+
+<input id="admissionNo" placeholder="Admission Number">
+
+
+<input id="studentName" placeholder="Student Name">
+
+
+<input id="fatherName" placeholder="Father Name">
+
+
+<select id="className">
+
+<option value="">Select Class</option>
+
+<option>Playway A</option>
+<option>Playway B</option>
+<option>Nursery</option>
+<option>LKG</option>
+<option>UKG</option>
+
+</select>
+
+
+<input id="fatherMobile" placeholder="Mobile Number">
+
+
+<button onclick="saveData()">
+SAVE STUDENT
+</button>
+
+
+<button onclick="location.href='studentlist.html'">
+VIEW STUDENT LIST
+</button>
+
+
+</div>
+
+
+
+<script src="js/database.js"></script>
+
+
+<script>
+
+
+function saveData(){
+
+
+let student={
+
+admissionNo:
+document.getElementById("admissionNo").value,
+
+
+name:
+document.getElementById("studentName").value,
+
+
+father:
+document.getElementById("fatherName").value,
+
+
+className:
+document.getElementById("className").value,
+
+
+mobile:
+document.getElementById("fatherMobile").value
+
+};
+
+
+
+if(student.name==""){
+
+alert("Please Enter Student Name");
+
+return;
+
+}
+
+
+
+saveStudent(student);
+
+
+alert("Student Saved Successfully");
+
+
+}
+
+
+</script>
+
+
+
+</body>
+
+</html>

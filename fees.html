@@ -1,0 +1,404 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Fee Collection - SidhuEdu ERP</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f8fb;
+margin:0;
+}
+
+
+.header{
+background:green;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+
+.container{
+
+width:95%;
+max-width:900px;
+margin:20px auto;
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px #ccc;
+
+}
+
+
+h2{
+text-align:center;
+color:green;
+}
+
+
+input,select{
+
+width:100%;
+padding:12px;
+margin:8px 0;
+
+}
+
+
+button{
+
+padding:10px;
+border:none;
+border-radius:5px;
+color:white;
+cursor:pointer;
+
+}
+
+
+.save{
+
+width:100%;
+background:green;
+font-size:17px;
+
+}
+
+
+.back{
+
+background:#555;
+margin-top:10px;
+width:100%;
+
+}
+
+
+table{
+
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+
+}
+
+
+th{
+
+background:green;
+color:white;
+
+}
+
+
+th,td{
+
+border:1px solid #ccc;
+padding:10px;
+text-align:center;
+
+}
+
+
+.print{
+
+background:#064663;
+
+}
+
+
+.total{
+
+background:#e8f5e9;
+padding:15px;
+font-size:20px;
+color:green;
+text-align:center;
+margin-top:15px;
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="header">
+
+<h2>🌈 Rainbow Play-Way Pre School</h2>
+
+<p>💰 Fee Collection</p>
+
+<h3>SidhuEdu ERP v1.0</h3>
+
+</div>
+
+
+
+
+<div class="container">
+
+
+<h2>💰 Collect Fee</h2>
+
+
+
+<input id="admissionNo" placeholder="Admission No">
+
+
+<input id="studentName" placeholder="Student Name">
+
+
+<input id="feeAmount" placeholder="Fee Amount">
+
+
+
+<select id="paymentMode">
+
+<option>Select Payment Mode</option>
+
+<option>Cash</option>
+
+<option>Online</option>
+
+<option>UPI</option>
+
+</select>
+
+
+
+<button class="save" onclick="collectFee()">
+
+Collect Fee
+
+</button>
+
+
+
+<button class="back" onclick="location.href='dashboard.html'">
+
+⬅ Back to Dashboard
+
+</button>
+
+
+
+<div class="total">
+
+Total Collection: ₹ <span id="total">0</span>
+
+</div>
+
+
+
+<h2>📋 Fee History</h2>
+
+
+
+<table id="feeTable">
+
+
+<tr>
+
+<th>Admission No</th>
+
+<th>Student</th>
+
+<th>Amount</th>
+
+<th>Payment</th>
+
+<th>Date</th>
+
+<th>Action</th>
+
+</tr>
+
+
+</table>
+
+
+
+</div>
+
+
+
+
+<script src="js/database.js"></script>
+
+
+
+<script>
+
+
+function collectFee(){
+
+
+let feeData={
+
+
+admissionNo:
+document.getElementById("admissionNo").value,
+
+
+studentName:
+document.getElementById("studentName").value,
+
+
+amount:
+document.getElementById("feeAmount").value,
+
+
+payment:
+document.getElementById("paymentMode").value,
+
+
+date:
+new Date().toLocaleDateString()
+
+
+};
+
+
+
+if(feeData.studentName==""){
+
+alert("Please enter Student Name");
+
+return;
+
+}
+
+
+
+saveFees(feeData);
+
+
+alert("✅ Fee Collected Successfully");
+
+
+location.reload();
+
+
+}
+
+
+
+
+
+function loadFees(){
+
+
+let fees=getFees();
+
+
+let table=document.getElementById("feeTable");
+
+
+let total=0;
+
+
+
+fees.forEach(function(f,index){
+
+
+total += Number(f.amount) || 0;
+
+
+
+let row=table.insertRow();
+
+
+
+row.innerHTML=`
+
+<td>${f.admissionNo}</td>
+
+<td>${f.studentName}</td>
+
+<td>₹ ${f.amount}</td>
+
+<td>${f.payment}</td>
+
+<td>${f.date}</td>
+
+<td>
+
+<button class="print" onclick="printReceipt(${index})">
+
+Print
+
+</button>
+
+</td>
+
+`;
+
+});
+
+
+document.getElementById("total").innerHTML=total;
+
+
+}
+
+
+
+
+
+function printReceipt(index){
+
+
+let fees=getFees();
+
+let f=fees[index];
+
+
+let win=window.open("");
+
+
+win.document.write(`
+
+<h2>🌈 Rainbow Play-Way Pre School</h2>
+
+<h3>Fee Receipt</h3>
+
+<p>Admission No: ${f.admissionNo}</p>
+
+<p>Student Name: ${f.studentName}</p>
+
+<p>Amount: ₹ ${f.amount}</p>
+
+<p>Payment Mode: ${f.payment}</p>
+
+<p>Date: ${f.date}</p>
+
+`);
+
+
+win.print();
+
+
+}
+
+
+
+
+loadFees();
+
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,224 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Attendance - SidhuEdu ERP</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f8fb;
+margin:0;
+}
+
+.header{
+background:green;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+.container{
+width:90%;
+margin:20px auto;
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px #ccc;
+}
+
+h2{
+text-align:center;
+color:green;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+th{
+background:green;
+color:white;
+}
+
+td,th{
+border:1px solid #ccc;
+padding:10px;
+text-align:center;
+}
+
+button{
+padding:8px 12px;
+border:none;
+border-radius:5px;
+color:white;
+cursor:pointer;
+}
+
+.present{
+background:green;
+}
+
+.absent{
+background:red;
+}
+
+.save{
+background:#064663;
+width:100%;
+padding:12px;
+margin-top:15px;
+}
+
+.back{
+background:#555;
+width:100%;
+padding:12px;
+margin-top:10px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="header">
+
+<h2>🌈 Rainbow Play-Way Pre School</h2>
+
+<p>📅 Attendance</p>
+
+<h3>SidhuEdu ERP v1.0</h3>
+
+</div>
+
+
+<div class="container">
+
+
+<h2>📅 Student Attendance</h2>
+
+
+<input type="date" id="date">
+
+
+
+<table id="attendanceTable">
+
+<tr>
+<th>Student Name</th>
+<th>Status</th>
+</tr>
+
+</table>
+
+
+<button class="save" onclick="saveAttendance()">
+Save Attendance
+</button>
+
+
+<button class="back" onclick="location.href='dashboard.html'">
+⬅ Back Dashboard
+</button>
+
+
+</div>
+
+
+
+<script src="js/database.js"></script>
+
+
+<script>
+
+
+let attendance={};
+
+
+
+function loadStudents(){
+
+let students=getStudents();
+
+let table=document.getElementById("attendanceTable");
+
+
+students.forEach(function(s,index){
+
+let row=table.insertRow();
+
+
+row.innerHTML=`
+
+<td>${s.name}</td>
+
+<td>
+
+<button class="present" onclick="mark(${index},'Present')">
+Present
+</button>
+
+<button class="absent" onclick="mark(${index},'Absent')">
+Absent
+</button>
+
+</td>
+
+`;
+
+});
+
+}
+
+
+
+function mark(index,status){
+
+attendance[index]=status;
+
+}
+
+
+
+function saveAttendance(){
+
+
+let data={
+
+date:document.getElementById("date").value,
+
+attendance:attendance
+
+};
+
+
+localStorage.setItem(
+"attendance",
+JSON.stringify(data)
+);
+
+
+alert("Attendance Saved Successfully");
+
+
+}
+
+
+
+loadStudents();
+
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>Expenses</title>
+
+<style>
+body{
+    font-family:Arial;
+    background:#f2f2f2;
+    margin:20px;
+}
+
+.container{
+    width:500px;
+    margin:auto;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px gray;
+}
+
+h2,h3{
+    text-align:center;
+    color:green;
+}
+
+input,select{
+    width:95%;
+    padding:10px;
+    margin:8px 0;
+}
+
+button{
+    background:green;
+    color:white;
+    padding:10px 20px;
+    border:none;
+    cursor:pointer;
+    border-radius:5px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>🌈 Rainbow Play-Way Pre School</h2>
+<h3>Expense Entry</h3>
+
+<input type="date">
+
+<select>
+<option>Select Expense</option>
+<option>Salary</option>
+<option>Electricity Bill</option>
+<option>Stationery</option>
+<option>Cleaning</option>
+<option>Transport</option>
+<option>Other</option>
+</select>
+
+<input type="number" placeholder="Amount">
+
+<input type="text" placeholder="Remarks">
+
+<br><br>
+
+<button>Save Expense</button>
+
+<br><br>
+
+<button onclick="window.location.href='dashboard.html'">
+⬅ Back to Dashboard
+</button>
+
+</div>
+
+</body>
+</html>
