@@ -79,6 +79,46 @@ SAVE EXPENSE
 
 <script src="database.js"></script>
 
-<script>﻿
+<script>
+
+    function saveExpenseData(){
+
+let expense={
+
+date:
+document.getElementById("expenseDate").value,
+
+type:
+document.getElementById("expenseType").value,
+
+amount:
+document.getElementById("expenseAmount").value,
+
+remark:
+document.getElementById("expenseRemark").value
+
+};
+
+if(expense.type=="" || expense.amount==""){
+
+alert("Please fill Expense Type and Amount");
+
+return;
+
+}
+
+saveExpense(expense);
+
+alert("Expense Saved Successfully");
+
+window.location.href="dashboard.html";
+
+}
+
+</script>
+
+</body>
+
+</html>
     
 
