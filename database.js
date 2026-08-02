@@ -114,3 +114,23 @@ total += Number(e.amount)||0;
 localStorage.setItem("totalExpenses",total);
 
 }
+
+//---------- EDIT STUDENT ----------
+
+function getStudent(index){
+
+let students = getStudents();
+
+return students[index];
+
+}
+
+function updateStudent(index, student){
+
+let students = getStudents();
+
+students[index] = student;
+
+localStorage.setItem("students", JSON.stringify(students));
+
+}
