@@ -1,0 +1,93 @@
+// SidhuEdu ERP Database
+
+
+// ================= STUDENT =================
+
+
+function getStudents(){
+
+    return JSON.parse(localStorage.getItem("students")) || [];
+
+}
+
+
+
+function saveStudent(studentData){
+
+    let students = getStudents();
+
+    students.push(studentData);
+
+    localStorage.setItem(
+        "students",
+        JSON.stringify(students)
+    );
+
+}
+
+
+
+function deleteStudent(index){
+
+    let students = getStudents();
+
+    students.splice(index,1);
+
+    localStorage.setItem(
+        "students",
+        JSON.stringify(students)
+    );
+
+}
+
+
+
+// ================= FEES =================
+
+
+function getFees(){
+
+    return JSON.parse(localStorage.getItem("fees")) || [];
+
+}
+
+
+
+function saveFees(feeData){
+
+    let fees = getFees();
+
+    fees.push(feeData);
+
+    localStorage.setItem(
+        "fees",
+        JSON.stringify(fees)
+    );
+
+}
+
+
+
+// ================= EXPENSES =================
+
+
+function getExpenses(){
+
+    return JSON.parse(localStorage.getItem("expenses")) || [];
+
+}
+
+
+
+function saveExpense(expenseData){
+
+    let expenses = getExpenses();
+
+    expenses.push(expenseData);
+
+    localStorage.setItem(
+        "expenses",
+        JSON.stringify(expenses)
+    );
+
+}
