@@ -144,12 +144,24 @@ table.innerHTML += `
 
 <td>
 
+<button style="background:blue;margin-right:5px;"
+onclick="editStudent(${index})">
+Edit
+</button>
+
 <button onclick="removeStudent(${index})">
 Delete
 </button>
 
 </td>
 
+function editStudent(index){
+
+localStorage.setItem("editStudentIndex", index);
+
+location.href="admission.html";
+
+}
 
 </tr>
 
