@@ -105,6 +105,30 @@ VIEW STUDENT LIST
 
 <script>
 
+  <script>
+
+let editIndex = localStorage.getItem("editStudentIndex");
+
+if(editIndex != null){
+
+    let students = getStudents();
+
+    let s = students[editIndex];
+
+    document.getElementById("admissionNo").value = s.admissionNo;
+    document.getElementById("studentName").value = s.name;
+    document.getElementById("fatherName").value = s.father;
+    document.getElementById("className").value = s.className;
+    document.getElementById("fatherMobile").value = s.mobile;
+
+    document.getElementById("saveBtn").innerHTML = "UPDATE STUDENT";
+
+}
+
+function saveData(){
+
+...
+
 
 function saveData(){
 
