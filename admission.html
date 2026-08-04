@@ -127,50 +127,44 @@ if(editIndex != null){
 
 function saveData(){
 
-
 let student={
 
-admissionNo:
-document.getElementById("admissionNo").value,
-
-
-name:
-document.getElementById("studentName").value,
-
-
-father:
-document.getElementById("fatherName").value,
-
-
-className:
-document.getElementById("className").value,
-
-
-mobile:
-document.getElementById("fatherMobile").value
+admissionNo: document.getElementById("admissionNo").value,
+name: document.getElementById("studentName").value,
+father: document.getElementById("fatherName").value,
+className: document.getElementById("className").value,
+mobile: document.getElementById("fatherMobile").value
 
 };
-
-
 
 if(student.name==""){
 
 alert("Please Enter Student Name");
-
 return;
 
 }
 
+if(editIndex != null){
 
+updateStudent(editIndex, student);
+
+localStorage.removeItem("editStudentIndex");
+
+alert("Student Updated Successfully");
+
+location.href="studentlist.html";
+
+}else{
 
 saveStudent(student);
 
-
 alert("Student Saved Successfully");
 
+location.href="studentlist.html";
 
 }
 
+}
 
 </script>
 
